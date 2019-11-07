@@ -15,6 +15,7 @@ public class multichatC extends Frame implements ActionListener,KeyListener{
 	StringBuffer clientdata;
 	String serverdata;
 	String ID;
+	LOGIN login;
 //	String clientdata="";
 	//String serverdata="";
 	
@@ -88,7 +89,12 @@ public class multichatC extends Frame implements ActionListener,KeyListener{
 	public void actionPerformed(ActionEvent ae) {
 		if(ID==null) {
 			ID=ltext.getText();
-			mlbl.setText(ID+"(으)로 로그인 하였습니다.");
+			login=new LOGIN(ID);
+			int ck=login.ckuser();
+			if(ck>0)mlbl.setText(ID+"(으)로 로그인 하였습니다.");
+			else { mlbl.setText(ID+"은 회원이 아닙니다.");
+			display.append("회원이 아닙니다.");
+			}
 		}
 		try {
 			clientdata.setLength(0);
